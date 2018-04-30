@@ -1,0 +1,14 @@
+<project name='QaaDevtool' default='install' basedir='.'>
+    <property file="extension.properties"/>
+    <target name="install">
+        <install-webapp dir="webapp" context="/QaaDevtool"/>
+    </target>
+
+    <target name="uninstall">
+        <remove-webapp context="/QaaDevtool"/>
+    </target>
+
+    <target name="upgrade"/>
+    <target name="downgrade"/>
+
+</project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- resource -->
+	<bean id="resource" class="com.mcafee.orion.core.spring.SpringResource">
+		<constructor-arg index="0" value="ResourceBundle" />
+	</bean>
+
+    <!-- Adding a Plugin to our Extension -->
+    <bean id="QaaDevtool.plugin" class="com.mcafee.mam.qaadevtool.plugin.QaaPlugin">
+        <property name="name" value="QaaDevtool"/>
+        <property name="displayKey" value="QaaDevtool" />
+        <property name="resource" ref="resource"/>
+        <property name="requires">
+             <list>
+                <value>core</value>
+                <value>console</value>
+                <value>EPOCore</value>
+                <value>PolicyMgmt</value>
+                <value>ComputerMgmt</value>
+                <value>response</value>
+                <value>scheduler</value>
+                <value>Notifications</value>
+                <value>DataChannel</value>
+                <value>rsd</value>
+            </list>
+        </property>
+        <property name="requiredPackages">
+			<list>
+				<value>PolicyMgmt:com.mcafee.epo.policy.ui.action.</value>
+				<value>rsd:com.mcafee.rsd.action.policy.,com.mcafee.rsd.action.setting.</value>
+				<value>response:com.mcafee.orion.response.mvc.</value>
+			</list>
+		</property>
+    </bean>
+</beans>

@@ -1,0 +1,123 @@
+ {
+    "class": "com.mcafee.mam.auto.infra.TestSUT", 
+   "drivers":
+            [
+                {
+                    "class": "com.mcafee.mam.auto.infra.drivers.vsphere.Vcenter",
+                    "host": "172.16.140.20",
+                    "name": "Vcenter",
+                    "user": "administrator@lab5",
+                    "password": "1qaz!QAZ",
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.drivers.epo.EPOClient",
+                    "name": "EPOClient",
+                    "user": "admin",
+                    "password": "1qaz!QAZ",
+                    "host": "172.16.140.31"
+                }
+             ],
+"objects":
+            [
+            	{
+                    "class": "com.mcafee.mam.auto.infra.drivers.epo.EPOFile",
+                    "name": "QaaDevtool",
+                    "path": "files/QaaDevtool_Extension_1.0.0.zip"
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.drivers.epo.EPOFile",
+                    "name": "rsd",
+                    "path": "files/rsd_extetion_4.7.1.zip"
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.drivers.epo.EPOFile",
+                    "name": "pkg",
+                    "path": "files/RSD_Sensor_4.7.1.zip"
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.device.ManagedDevice",
+                    "name": "04-VistaBusiness",
+                    "netbios": "04-VistaBusiness",
+                    "mainConnection":  "VM Network",
+                    "connection1":     "VM Network",
+                    "connection2":     "VM Network",
+                    "mainSnapshot":    "vanilla",
+                    "snapshot1": "with_ma",
+                    "snapshot2": "",
+                    "snapshot3": "",
+                    "dns": "04-VistaBusiness",
+                    "vlanid":["3807"],
+                 	"vendorid": "VMware, Inc.",
+                    "capability": "VM Guest",
+                    "os": ["Microsoft Windows","",""],
+                    "users": ["null"],
+                    "domain": "lab5",
+                    "authorized": "false",
+                    "firewall": "no",
+                    "addresses":
+                            [
+                                {
+                                    "class": "com.mcafee.mam.auto.infra.device.DeviceAddress",
+                                    "mac": "00:50:56:81:41:3d"
+                                }
+                            ]
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.device.ManagedDevice",
+                    "name": "13-win2k8-srv",
+                    "netbios": "13-win2k8-srv",
+                    "mainConnection":  "VM Network",
+                    "connection1":     "VM Network",
+                    "connection2":     "VM Network",
+                    "mainSnapshot":    "vanilla",
+                    "snapshot1": "with_epo",
+                    "snapshot2": "",
+                    "snapshot3": "",
+                    "dns": "13-win2k8-srv",
+                    "vlanid":["3807"],
+                 	"vendorid": "VMware, Inc.",
+                    "capability": "VM Guest",
+                    "os": ["Microsoft Windows","",""],
+                    "users": ["null"],
+                    "domain": "lab5",
+                    "authorized": "false",
+                    "firewall": "no",
+                    "addresses":
+                            [
+                                {
+                                    "class": "com.mcafee.mam.auto.infra.device.DeviceAddress",
+                                    "mac": "00:50:56:81:57:7d"
+                                }
+                            ]
+                },
+                {
+                    "class": "com.mcafee.mam.auto.infra.device.ManagedDevice",
+                    "name": "17-win2k8",
+                    "netbios": "17-win2k8",
+                    "mainConnection":  "VM Network",
+                    "connection1":     "VM Network",
+                    "connection2":     "VM Network",
+                    "mainSnapshot":    "vanilla",
+                    "snapshot1": "with_ma",
+                    "snapshot2": "",
+                    "snapshot3": "",
+                    "dns": "17-win2k8",
+                    "vlanid":["3807"],
+                 	"vendorid": "VMware, Inc.",
+                    "capability": "VM Guest",
+                    "os": ["Microsoft Windows","",""],
+                    "users": ["null"],
+                    "domain": "lab5",
+                    "authorized": "false",
+                    "firewall": "no",
+                    "addresses":
+                            [
+                                {
+                                    "class": "com.mcafee.mam.auto.infra.device.DeviceAddress",
+                                    "mac": "00:50:56:81:66:81"
+                                }
+                            ]
+                }
+                
+       ]
+}

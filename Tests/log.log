@@ -1,0 +1,20 @@
+
+D:\Automation\Main\Tests>D:/Automation/Main/Tests/target/classes/exe/PsExec.exe \\172.16.139.150 -u administrator -p 1qaz!QAZ "tasklist"  
+
+PsExec v2.1 - Execute processes remotely
+Copyright (C) 2001-2013 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+
+Connecting to 172.16.139.150...Starting PSEXESVC service on 172.16.139.150...Connecting with PsExec service on 172.16.139.150...Starting tasklist on 172.16.139.150...
+tasklist exited on 172.16.139.150 with error code 0.
+
+D:\Automation\Main\Tests>D:/Automation/Main/Tests/target/classes/exe/PsExec.exe \\172.16.139.150 -u administrator -p 1qaz!QAZ "tasklist"  
+
+PsExec v2.1 - Execute processes remotely
+Copyright (C) 2001-2013 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+
+Connecting to 172.16.139.150...Starting PSEXESVC service on 172.16.139.150...Connecting with PsExec service on 172.16.139.150...Starting tasklist on 172.16.139.150...
+tasklist exited on 172.16.139.150 with error code 0.

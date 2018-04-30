@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<project name='QaaDevtool' default='build' basedir='.'>
+
+	<!--  For Dev Building ONLY - also adds the Timestamp to the build number -->
+
+	<tstamp>
+		<format property="dev.build.number" pattern="yyMMddHHmm"/>
+	</tstamp>
+
+	<property name="wartarget" location="target/QaaDevtool_extension" />
+	<property name="target" location="target" />
+	<property name="m2repository" location="C:/Users/gbitan/.m2/repository" />
+	<property name="src" location="src" />
+	<property name="package.tmp" value="${target}/tmppackage/" />
+	<property name="package.final" value="${target}/package/plugin" />
+	<property name="ext.properties" value="target/zip/extension.properties" />
+	<property name="include.Gamal" value="false" />
+
+	<!-- For use when Deploying Extension from within ANT -->
+	<property name="orion.ip" value="172.16.139.132" />
+	<property name="orion.admin.username" value="admin" />
+	<property name="orion.admin.password" value="1qaz!QAZ" />
+	<property name="orion.protocol" value="https" />
+	<property name="orion.port" value="8443" />
+	<property name="remote.client.dir" value="${m2repository}" />
+
+	<target name="build" >
+		<property name="version" value="${project.version}" />
+		<echo>Building Version ${project.version}</echo>
+		<property name="plugin.file" value="QaaDevtool_Extension_${version}.zip" />
+		
+		<jar jarfile="${target}/zip/webapp/WEB-INF/lib/QaaPlugin.jar" 
+								basedir="${wartarget}/WEB-INF/classes/"  
+								includes="**/*Plugin.class"></jar>
+		
+		<jar jarfile="${target}/QaaDevtool_Extension_${version}.jar"
+				             basedir="${wartarget}/WEB-INF/classes"
+				             includes="**/*.class, **/*.properties, **/*.xml"
+				             excludes="**/*Test*,**/*QaaPlugin*">
+		</jar>
+		
+		<mkdir dir="${target}/zip/webapp/WEB-INF/lib" />
+		<copy todir="${target}/zip/webapp/WEB-INF/lib">
+			<fileset dir="${target}">
+				<include name="QaaDevtool*.jar" />
+				<exclude name="classes/**" />
+			</fileset>
+		</copy>
+
+		<copy todir="${target}/zip/webapp/WEB-INF">
+			<fileset dir="${wartarget}/WEB-INF">
+				<exclude name="jspweb.xml"/>
+				<exclude name="**/classes/**"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${target}/zip">
+			<fileset dir="${src}/ext" >
+				<include name="**/**" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${package.final}" />
+		<mkdir dir="${package.tmp}" />
+		<zip basedir="${target}/zip" destfile="${package.final}/${plugin.file}" />
+	</target>
+
+	<target name="auto-deploy" >
+		<echo message="Attempting Deploy!" />
+		<script language="javascript">
+	            project.setProperty("skip.apiscanner", "true");
+	            project.setProperty("skip.signing", "true");
+	            project.setProperty("dev.build", "true");
+	        </script>
+
+		<antcall target="install-extension"/>
+	</target>
+
+	<!--========================================================================
+	     ============================ init-command-task ============================
+	     =========================================================================-->
+	<target name="init-command-task">
+		<taskdef name="orion-command" classname="com.mcafee.orion.remote.client.CommandTask">
+			<classpath>
+				<fileset dir="${remote.client.dir}" includes="**/*.jar"/>
+			</classpath>
+		</taskdef>
+	</target>
+	<!--========================================================================
+	     ============================ install-extension ============================
+	     =========================================================================-->
+	<target name="install-extension" description="Deploy the extension to ePO" depends="build">
+		<antcall target="install-nodist"/>
+	</target>
+
+	<target name="install-nodist" description="Deploy the extension to ePO (no dist)" depends="init-command-task , uninstall-extension">
+		<!-- Full path to the extension files -->
+		<pathconvert targetos="unix" property="extension.convertedpath">
+			<path id="extension.convertedpath" path="${package.final}/${plugin.file}"/>
+		</pathconvert>
+		<echo message="URI is: file:///${extension.convertedpath}"/>
+
+		<!-- Install -->
+		<orion-command command="ext.install" protocol="${orion.protocol}" host="${orion.ip}:${orion.port}" method="post"
+	                       user="${orion.admin.username}"
+	                       password="${orion.admin.password}">
+			<param name="extension" value="file:///${extension.convertedpath}"/>
+		</orion-command>
+
+	</target>
+
+	<!--========================================================================
+	     =========================== uninstall-extension ===========================
+	     =========================================================================-->
+	<target name="uninstall-extension" description="Uninstall the extension from ePO" depends="init-command-task">
+		<echo message="Trying to Uninstall ${extension.name}" />
+		<!-- Uninstall -->
+		<orion-command command="ext.uninstall" protocol="${orion.protocol}" host="${orion.ip}:${orion.port}" method="post"
+	                       user="${orion.admin.username}"
+	                       password="${orion.admin.password}">
+			<param name="extension" value="${extension.name}"/>
+		</orion-command>
+	</target>
+</project>

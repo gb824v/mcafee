@@ -1,0 +1,17 @@
+/bin/
+*.orig
+*.project
+*.classpath
+*.csv
+**/.settings/**
+**/test-output/**
+**/target/**
+/target/
+/.idea/
+.metadata
+*.iml
+/main/.idea
+*.out
+*.class
+*.bin
+

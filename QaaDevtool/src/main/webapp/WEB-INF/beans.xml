@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="adt.sensor.sensorStatus" class="com.mcafee.mam.qaadevtool.command.sensor.SensorStatus"
+		scope="prototype">
+		<property name="displayNameKey" value="adt.sensor.sensorStatus.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="productPropertyFormatter" ref="ComputerMgmt.ProdPropsDA" />
+		<property name="commandInvoker" ref="core.commandInvoker" />
+		<property name="auditLogWriter" ref="core.audit" />
+	</bean>
+	<bean id="adt.sensor.addRemoveSensor"
+		class="com.mcafee.mam.qaadevtool.command.sensor.AddRemoveSensor"
+		scope="prototype">
+		<property name="displayNameKey" value="adt.sensor.addRemoveSensor.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="auditLogWriter" ref="core.audit" />
+		<property name="commandInvoker" ref="core.commandInvoker" />
+		<property name="clientTaskService" ref="epo.clientTaskService" />
+	</bean>
+	<bean id="adt.sensor.wakeupAgent" class="com.mcafee.mam.qaadevtool.command.sensor.WakeupAgent"
+		scope="prototype">
+		<property name="displayNameKey" value="adt.sensor.WakeupAgent.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="auditLogWriter" ref="core.audit" />
+		<property name="commandInvoker" ref="core.commandInvoker" />
+	</bean>
+	<bean id="adt.policy.create"
+		class="com.mcafee.mam.qaadevtool.command.rsd.policy.CreatePolicyCommand"
+		scope="prototype">
+
+		<property name="displayNameKey" value="adt.policy.create.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="policyObjectService" ref="epo.policyObjectService" />
+	</bean>
+<bean id="adt.policy.assign"
+		class="com.mcafee.mam.qaadevtool.command.rsd.policy.AssignPolicyCommand"
+		scope="prototype">
+
+		<property name="displayNameKey" value="adt.policy.assign.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+	</bean>
+	
+	<bean id="adt.policy.modify"
+		class="com.mcafee.mam.qaadevtool.command.rsd.policy.ModifyPolicyCommand"
+		scope="prototype">
+
+		<property name="displayNameKey" value="adt.policy.modify.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="policy" ref="rsd.mvcaction.Policy" />
+	</bean>
+	
+	<bean id="adt.policy.delete"
+		class="com.mcafee.mam.qaadevtool.command.rsd.policy.DeletePolicyCommand"
+		scope="prototype">
+
+		<property name="displayNameKey" value="adt.policy.delete.name" />
+		<property name="resource" ref="resource" />
+		<property name="database" ref="core.db" />
+		<property name="policyObjectService" ref="epo.policyObjectService" />
+	</bean>
+
+	<bean id="adt.sensorsettings.modify"
+		class="com.mcafee.mam.qaadevtool.command.rsd.server.ModifySensorSettingCommand"
+		scope="prototype">
+		<property name="database" ref="core.db" />
+		<property name="displayNameKey" value="adt.sensorsettings.modify.name" />
+		<property name="resource" ref="resource" />
+		<property name="sensorSettings" ref="rsd.mvcaction.SensorSettings" />
+	</bean>
+
+	<bean id="adt.compliancesettings.modify"
+		class="com.mcafee.mam.qaadevtool.command.rsd.server.ModifyComplianceSettingCommand"
+		scope="prototype">
+		<property name="database" ref="core.db" />
+		<property name="displayNameKey" value="adt.compliancesettings.modify.name" />
+		<property name="resource" ref="resource" />
+		<property name="serverSettings" ref="rsd.mvcaction.ServerSettings" />
+	</bean>
+
+	<bean id="adt.response.create"
+		class="com.mcafee.mam.qaadevtool.command.rsd.response.CreateAutomaticResponseCommand"
+		scope="prototype">
+		<property name="database" ref="core.db" />
+		<property name="displayNameKey" value="adt.response.create.name" />
+		<property name="resource" ref="resource" />
+		<property name="importResponseAction" ref="response.mvc.rule.import" />
+	</bean>
+
+	<bean id="adt.response.delete"
+		class="com.mcafee.mam.qaadevtool.command.rsd.response.DeleteAutomaticResponseCommand"
+		scope="prototype">
+		<property name="database" ref="core.db" />
+		<property name="displayNameKey" value="adt.response.create.name" />
+		<property name="resource" ref="resource" />
+		<property name="ruleService" ref="response.rule.service" />
+	</bean>
+</beans>
+	

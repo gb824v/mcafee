@@ -1,0 +1,9 @@
+{    "class": "com.mcafee.mam.auto.infra.Scenario",    
+ 	 "sut": "sut.json",    
+     "tests":
+            [
+            	{
+                    "class":  "com.mcafee.mam.auto.tests.bvt.QC_0000_T1"
+                }
+            ]
+}

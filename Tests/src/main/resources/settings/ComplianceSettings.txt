@@ -1,0 +1,10 @@
+{ "alternateEpoServerNames" : "",
+  "lastAgentCommunication" : 30,
+  "lastSensorDetection" : 60,
+  "sensorGood" : 80,
+  "sensorOk" : 50,
+  "subnetGood" : 90,
+  "subnetOk" : 50,
+  "systemGood" : 90,
+  "systemOk" : 60
+}

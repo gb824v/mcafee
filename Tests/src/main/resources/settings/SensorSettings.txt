@@ -1,0 +1,9 @@
+{ "ipnoscanText" : "10.231.23.15 10.231.23.99",
+  "maxActive" : 0,
+  "maxTimePeriod" : 1,
+  "noscanText" : "",
+  "periodUnits" : "hours",
+  "sensorTimeout" : 1,
+  "sensorsPerSubnet" : 0,
+  "timeoutUnits" : "days"
+}
